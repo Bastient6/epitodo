@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Tableau de bord</title>
+    <link rel="stylesheet" href="front.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Tableau de bord</h1>
+        <div id="userList"></div>
+        <p><a href="/password.html">Modifier le mot de passe </a></p>
+    </div>
+
+    <script>
+        fetch('/users')
+            .then(response => response.json())
+            .then(data => {
+                const userList = document.getElementById('userList');
+                userList.innerHTML = '';
+
+                data.forEach(user => {
+                    const userDiv = document.createElement('div');
+                    userDiv.className = 'user';
+                    userDiv.innerHTML = `
+                        <p>ID: ${user.id}</p>
+                        <p>Email: ${user.email}</p>
+                        <p>Nom: ${user.name}</p>
+                        <p>Prénom: ${user.firstname}</p>
+                        <p>Date de création: ${user.created_at}</p>
+                        <p>Mot de passe: ${user.password}</p>
+                        <hr>
+                    `;
+                    userList.appendChild(userDiv);
+                });
+            })
+            .catch(error => {
+                console.error('Erreur lors de la récupération des utilisateurs:', error);
+            });
+    </script>
+</body>
+</html>

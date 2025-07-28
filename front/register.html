@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Page d'Inscription</title>
+    <link rel="stylesheet" href="front.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Inscription</h1>
+        <form id="registerForm">
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="text" name="name" placeholder="Nom" required>
+            <input type="text" name="firstname" placeholder="Prénom" required>
+            <input type="password" name="password" placeholder="Mot de passe" required>
+            <button type="submit">S'inscrire</button>
+        </form>
+        <div id="successMessage" class="success-message"></div>
+        <div id="errorMessage" class="error-message"></div>
+        <p>Déjà inscrit ? <a href="/login.html">Se connecter</a></p>
+    </div>
+
+    <script>
+        document.getElementById('registerForm').addEventListener('submit', event => {
+            event.preventDefault();
+
+            const form = event.target;
+            const formData = new FormData(form);
+
+            fetch('/register', {
+                method: 'POST',
+                body: JSON.stringify(Object.fromEntries(formData)),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    document.getElementById('successMessage').textContent = 'Inscription réussie. Vous pouvez vous connecter maintenant.';
+                    form.reset();
+                } else {
+                    throw new Error('Erreur lors de l\'inscription');
+                }
+            })
+            .catch(error => {
+                document.getElementById('errorMessage').textContent = error.message;
+            });
+        });
+    </script>
+</body>
+</html>
