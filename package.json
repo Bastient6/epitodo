@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/EpitechPromo2027/B-WEB-200-MPL-2-1-epytodo-louis.cornu.git"
+    "url": "git+https://github.com/Bastient6/epitodo.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/EpitechPromo2027/B-WEB-200-MPL-2-1-epytodo-louis.cornu/issues"
+    "url": "https://github.com/Bastient6/epitodo/issues"
   },
-  "homepage": "https://github.com/EpitechPromo2027/B-WEB-200-MPL-2-1-epytodo-louis.cornu#readme",
+  "homepage": "https://github.com/Bastient6/epitodo#readme",
   "dependencies": {
     "bcrypt": "^5.1.0",
     "bcryptjs": "^2.4.3",
